@@ -19,6 +19,7 @@
   "homepage": "https://github.com/jinu0137/redis_example#readme",
   "dependencies": {
     "dotenv": "^16.0.3",
-    "ioredis": "^5.2.3"
+    "ioredis": "^5.2.3",
+    "readline-sync": "^1.4.10"
   }
 }

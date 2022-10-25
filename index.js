@@ -1,30 +1,15 @@
-import Redis from "ioredis";
-import redisConfig from "./config/redis.config.js";
+import readlineSync from "readline-sync";
+import * as redis from "./lib/redis.lib.js";
 
-(() => {
-  console.log(`Redis Connection Start!!!`);
+(async () => {
+  console.log(`Redis IO Program!!!`);
 
-  const redis = new Redis({
-    host: redisConfig.host,
-    port: redisConfig.port,
-  });
+  const key = readlineSync.question("key \t: ");
+  const value = readlineSync.question("value \t: ");
+  await redis.setValue(key, value);
 
-  console.log(`Redis Connect Success!!! \n`);
+  const search_key = readlineSync.question("search key \t: ");
+  await redis.getValue(search_key);
 
-  console.log("Redis IO Test START!!!");
-  const key = "test_key";
-  const value = "test_value";
-
-  console.log(`set ${key}: ${value}`);
-  redis.set(key, value);
-
-  console.log(`get ${key}`);
-  redis.get(key, (err, result) => {
-    if (err) {
-      console.error(err);
-    } else {
-      console.log(result);
-    }
-  });
   process.exit();
 })();
